@@ -3,6 +3,7 @@ import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
 import { prisma } from "$lib/server/prisma";
 import { dev } from "$app/environment";
 import { GitHub, Google } from "arctic";
+import { PUBLIC_URL } from "$env/static/public";
 import {
 	GITHUB_CLIENT_ID,
 	GITHUB_CLIENT_SECRET,
@@ -35,7 +36,7 @@ export const github = new GitHub(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET);
 export const google = new Google(
 	GOOGLE_CLIENT_ID,
 	GOOGLE_CLIENT_SECRET,
-	"http://localhost:5173/login/callback/google"
+	`${PUBLIC_URL}/login/callback/google`
 );
 
 declare module "lucia" {
