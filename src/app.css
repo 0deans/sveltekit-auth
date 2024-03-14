@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html, body {
+		@apply h-full;
+	}
+}
+
+@layer components {
+	.input-primary {
+		@apply w-full appearance-none rounded-md dark:bg-gray-700 bg-gray-100
+     py-2 px-4 text-sm leading-6 placeholder-slate-400 shadow-sm focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-400;
+	}
+	.btn-primary {
+		@apply grid w-full place-items-center rounded-md bg-blue-500 py-2 pl-2
+     pr-3 text-sm text-white shadow-sm first-line:font-medium hover:bg-blue-400 active:scale-[.98];
+	}
+}
