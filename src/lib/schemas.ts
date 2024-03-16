@@ -15,6 +15,10 @@ export const registerSchema = z.object({
 	password: passwordSchema
 });
 
+export const resetPasswordSchema = z.object({
+	email: z.string().email()
+});
+
 export const changePasswordSchema = z
 	.object({
 		current: passwordSchema.optional(),

@@ -8,14 +8,16 @@
 	import IconGithub from "~icons/mdi/github";
 	import IconGoogle from "~icons/flat-color-icons/google";
 	import { enhance } from "$app/forms";
-	import type { ActionData, PageData } from "./$types";
 	import { Button } from "$lib/components/button";
+	import { page } from "$app/stores";
+	import type { ActionData } from "./$types";
+
+	export let form: ActionData;
 
 	let hidePassword = true;
 	let isLoading: boolean = false;
 
-	export let form: ActionData;
-	export let data: PageData;
+	const message = form?.message ?? $page.url.searchParams.get("message");
 </script>
 
 <div class="flex flex-auto flex-col items-center justify-center">
@@ -57,7 +59,7 @@
 			{/if}
 			<div class="relative">
 				<input
-					class="input-primary peer pr-10 pl-10"
+					class="input-primary peer pl-10 pr-10"
 					type={hidePassword ? "password" : "text"}
 					name="password"
 					placeholder="Enter your password"
@@ -93,10 +95,8 @@
 					Sign In
 				{/if}
 			</button>
-			{#if form?.message || data?.message}
-				<span class="text-[.9rem] text-red-600">
-					{form?.message ? form.message : data?.message}
-				</span>
+			{#if message}
+				<span class="text-[.9rem] text-red-600">{message}</span>
 			{/if}
 			<div class="flex justify-between text-sm">
 				<a href="/signup" class="hover:text-blue-400">Don't have an account?</a>

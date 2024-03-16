@@ -2,6 +2,10 @@
 	import IconMail from "~icons/uil/envelope";
 	import IconLoader from "~icons/ri/loader-4-line";
 	import { enhance } from "$app/forms";
+	import { cn } from "$lib/utils";
+	import type { ActionData } from "./$types";
+
+	export let form: ActionData;
 
 	let isLoading: boolean = false;
 </script>
@@ -9,7 +13,7 @@
 <div class="flex flex-auto items-center justify-center">
 	<form
 		method="post"
-		class="w-80 space-y-3 font-semibold"
+		class="w-80 space-y-3 text-center font-semibold"
 		use:enhance={() => {
 			isLoading = true;
 			return async ({ update }) => {
@@ -38,5 +42,10 @@
 				Send password reset email
 			{/if}
 		</button>
+		{#if form?.message}
+			<span class={cn("text-[.9rem] text-red-600", { "text-primary-500": form.success })}>
+				{form.message}
+			</span>
+		{/if}
 	</form>
 </div>
