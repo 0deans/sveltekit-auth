@@ -7,7 +7,7 @@
 
 	export let form: ActionData;
 
-	let isLoading: boolean = false;
+	let isLoading = false;
 </script>
 
 <div class="flex flex-auto items-center justify-center">
@@ -30,12 +30,13 @@
 				name="email"
 				placeholder="Enter your email address"
 				required
+				value={form?.email ?? ""}
 			/>
 			<IconMail
 				class="pointer-events-none absolute left-3 top-1/2 -mt-2.5 text-lg peer-focus:text-blue-500"
 			/>
 		</div>
-		<button class="btn-primary" type="submit">
+		<button class="btn-primary" type="submit" disabled={isLoading}>
 			{#if isLoading}
 				<IconLoader class="h-5 animate-spin text-lg" />
 			{:else}

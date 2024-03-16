@@ -86,7 +86,7 @@
 		<input class="h-4 w-4 bg-transparent" type="checkbox" id="hide-password" bind:checked={showPassword} />
 		<label for="hide-password">Show password</label>
 	</div>
-	<button type="submit" class="btn-primary" class:bg-primary-500={form?.success}>
+	<button type="submit" class="btn-primary" class:bg-primary-500={form?.success} disabled={isLoading}>
 		{#if isLoading}
 			<IconLoader class="h-5 animate-spin text-lg" />
 		{:else}

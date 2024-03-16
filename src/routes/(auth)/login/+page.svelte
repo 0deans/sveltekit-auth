@@ -88,7 +88,7 @@
 					{form?.errors?.password}
 				</span>
 			{/if}
-			<button class="btn-primary" type="submit">
+			<button class="btn-primary" type="submit" disabled={isLoading}>
 				{#if isLoading}
 					<IconLoader class="h-5 animate-spin text-lg" />
 				{:else}

@@ -1,6 +1,6 @@
 import { resend } from "$lib/server/resend";
 import { fail } from "@sveltejs/kit";
-import { resetPasswordSchema } from "$lib/schemas";
+import { resetPasswordRequestSchema } from "$lib/schemas";
 import { prisma } from "$lib/server/prisma";
 import { render } from "svelte-email";
 import ResetPasswordMail from "$lib/components/ResetPasswordMail.svelte";
@@ -9,7 +9,7 @@ import type { Actions } from "./$types";
 export const actions: Actions = {
 	default: async ({ request }) => {
 		const data = Object.fromEntries(await request.formData());
-		const form = resetPasswordSchema.safeParse(data);
+		const form = resetPasswordRequestSchema.safeParse(data);
 
 		if (!form.success) {
 			return fail(400, {
@@ -30,9 +30,16 @@ export const actions: Actions = {
 		}
 
 		try {
+			const { id } = await prisma.passwordReset.create({
+				data: {
+					userId: user.id,
+					expiresAt: new Date(Date.now() + 1000 * 60 * 60) // 1 hour
+				}
+			});
+
 			const html = render({
 				template: ResetPasswordMail,
-				props: { token: "1234" }
+				props: { token: id }
 			});
 
 			await resend.emails.send({

@@ -15,7 +15,7 @@ export const registerSchema = z.object({
 	password: passwordSchema
 });
 
-export const resetPasswordSchema = z.object({
+export const resetPasswordRequestSchema = z.object({
 	email: z.string().email()
 });
 
