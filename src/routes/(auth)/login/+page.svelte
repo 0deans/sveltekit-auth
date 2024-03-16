@@ -17,7 +17,7 @@
 	let hidePassword = true;
 	let isLoading: boolean = false;
 
-	const message = form?.message ?? $page.url.searchParams.get("message");
+	$: message = form?.message ?? $page.url.searchParams.get("message");
 </script>
 
 <div class="flex flex-auto flex-col items-center justify-center">
