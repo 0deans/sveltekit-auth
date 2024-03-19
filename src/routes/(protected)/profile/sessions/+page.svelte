@@ -22,10 +22,9 @@
 
 <div class="flex flex-col space-y-4">
 	{#each data.sessions as session}
-		{@const phone = (session.os ?? "") in ["iOS", "Android"]}
 		<div class="flex items-center justify-between rounded-md border border-gray-500 p-2">
 			<div class="flex items-center gap-4">
-				{#if phone}
+				{#if ["iOS", "Android"].includes(session.os ?? "")}
 					<IconPhone class="h-10 w-10" />
 				{:else}
 					<IconMonitor class="h-10 w-10" />
