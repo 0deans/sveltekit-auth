@@ -2,7 +2,8 @@ import { prisma } from "$lib/server/prisma";
 import { fail, redirect } from "@sveltejs/kit";
 import { lucia } from "$lib/server/auth";
 import UAParser from "ua-parser-js";
-import moment from "moment";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import type { Actions, PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ parent, locals }) => {
@@ -13,9 +14,10 @@ export const load: PageServerLoad = async ({ parent, locals }) => {
 		}
 	});
 
+	dayjs.extend(relativeTime);
 	const sessions = userSessions.map((session) => {
 		let parser = new UAParser(session.userAgent);
-		let createdAt = moment(session.createdAt).fromNow();
+		let createdAt = dayjs(session.createdAt).fromNow();
 		return {
 			id: session.id,
 			createdAt,
