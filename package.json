@@ -44,6 +44,7 @@
 		"@lucia-auth/adapter-prisma": "^4.0.0",
 		"@prisma/client": "5.8.1",
 		"@types/ua-parser-js": "^0.7.39",
+		"@vercel/blob": "^0.22.1",
 		"arctic": "^1.1.4",
 		"clsx": "^2.1.0",
 		"dayjs": "^1.11.10",
