@@ -2,7 +2,7 @@ import { lucia } from "$lib/server/auth";
 import { fail, redirect } from "@sveltejs/kit";
 import { prisma } from "$lib/server/prisma";
 import { s3Client } from "$lib/server/bucket";
-import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { DeleteObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { S3BUCKET_NAME } from "$env/static/private";
 import type { Actions, PageServerLoad } from "./$types";
 
@@ -28,10 +28,16 @@ export const actions: Actions = {
 			return fail(401);
 		}
 		await prisma.user.delete({
-			where: {
-				id: event.locals.user.id
-			}
+			where: { id: event.locals.user.id }
 		});
+
+		await s3Client.send(
+			new DeleteObjectCommand({
+				Bucket: S3BUCKET_NAME,
+				Key: event.locals.user.id
+			})
+		);
+
 		const sessionCookie = lucia.createBlankSessionCookie();
 		event.cookies.set(sessionCookie.name, sessionCookie.value, {
 			path: ".",
