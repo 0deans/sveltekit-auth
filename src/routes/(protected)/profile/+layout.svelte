@@ -9,15 +9,15 @@
 <main class="mt-16 flex flex-auto space-x-6 sm:justify-center">
 	<nav class="text-md ml-4 w-full max-w-44 space-y-2 font-bold">
 		<a class:active={$page.url.pathname === "/profile"} href="/profile"><IconUser /> Profile</a>
-		<a class:active={$page.url.pathname === "/profile/password"} href="/profile/password"
-			><IconKey /> Password</a
-		>
-		<a class:active={$page.url.pathname === "/profile/sessions"} href="/profile/sessions"
-			><IconAntenna /> Sessions</a
-		>
-		<a class:active={$page.url.pathname === "/profile/connections"} href="/profile/connections"
-			><IconApps /> Connections</a
-		>
+		<a class:active={$page.url.pathname === "/profile/password"} href="/profile/password">
+			<IconKey /> Password
+		</a>
+		<a class:active={$page.url.pathname === "/profile/sessions"} href="/profile/sessions">
+			<IconAntenna /> Sessions
+		</a>
+		<a class:active={$page.url.pathname === "/profile/connections"} href="/profile/connections">
+			<IconApps /> Connections
+		</a>
 	</nav>
 	<div class="w-full max-w-[800px]">
 		<slot />

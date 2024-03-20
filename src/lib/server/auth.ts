@@ -19,15 +19,11 @@ export const lucia = new Lucia(adapter, {
 			secure: !dev
 		}
 	},
-	getSessionAttributes: (attributes) => {
-		return {
-			userAgent: attributes.userAgent
-		};
-	},
 	getUserAttributes: (attributes) => {
 		return {
 			id: attributes.id,
-			email: attributes.email
+			email: attributes.email,
+			avatar: attributes.avatar
 		};
 	}
 });
@@ -42,12 +38,10 @@ export const google = new Google(
 declare module "lucia" {
 	interface Register {
 		Lucia: typeof lucia;
-		DatabaseSessionAttributes: {
-			userAgent: string;
-		};
 		DatabaseUserAttributes: {
 			id: string;
 			email: string;
+			avatar?: string;
 		};
 	}
 }
