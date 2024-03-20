@@ -63,7 +63,11 @@
 </div>
 <p class="my-2 text-red-500" class:hidden={!error}>{error}</p>
 <div class="relative my-6 w-max">
-	<img src={data.user?.avatar ?? "avatar.jpg"} alt="avatar" class="h-36 w-36 rounded-full" />
+	<img
+		src={data.user?.avatar}
+		alt="avatar"
+		class="h-36 w-36 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-transparent"
+	/>
 	<button
 		on:click={handleSelect}
 		class="absolute -right-6 bottom-0 flex rounded-md border border-gray-200 bg-white px-2 py-1 dark:border-gray-500 dark:bg-gray-900"
