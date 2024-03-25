@@ -65,7 +65,7 @@ function createDerivedMode() {
 	const { subscribe } = derived(
 		[userPrefersMode, systemMode],
 		([$userPrefersMode, $systemMode]) => {
-			if (!browser) return undefined;
+			if (!browser) return;
 
 			const derivedMode = $userPrefersMode === "system" ? $systemMode : $userPrefersMode;
 			const light = derivedMode === "light";
