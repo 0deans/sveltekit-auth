@@ -34,8 +34,13 @@
 					<span class="text-sm font-semibold text-gray-300"> CURRENT DEVICE</span>
 				{/if}
 			</div>
-			<form action="?/revoke" method="post" use:enhance>
-				<input type="hidden" name="id" value={session.id} />
+			<form
+				action="?/revoke"
+				method="post"
+				use:enhance={({ formData }) => {
+					formData.append("id", session.id);
+				}}
+			>
 				<Button type="submit" size="xs">Revoke</Button>
 			</form>
 		</div>
