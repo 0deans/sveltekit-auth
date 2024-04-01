@@ -47,7 +47,6 @@ export const actions: Actions = {
 	},
 	uploadAvatar: async ({ request, locals }) => {
 		const { avatar } = Object.fromEntries(await request.formData());
-		console.log(avatar);
 
 		if (!avatar || !(avatar instanceof File)) {
 			return fail(400, { message: "Invalid avatar" });
