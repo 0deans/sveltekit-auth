@@ -123,7 +123,7 @@
 				type="submit"
 				class="flex w-full items-center justify-center gap-4 font-bold dark:bg-gray-700 dark:text-slate-300 dark:hover:bg-gray-800"
 			>
-				<IconGoogle class="text-2xl" /> Sign in with Github
+				<IconGoogle class="text-2xl" /> Sign in with Google
 			</Button>
 		</form>
 	</div>
